@@ -70,9 +70,7 @@ def wines_by_region_climate() -> str:
         WITH vinhos_por_climate AS (
             SELECT DISTINCT
                 r.climate,
-                w.name,
-                w.region,
-                w.variety,
+                w.rowid AS wine_id,
                 w.rating
             FROM regions AS r
             LEFT JOIN wines AS w
@@ -80,7 +78,7 @@ def wines_by_region_climate() -> str:
         )
         SELECT
             climate,
-            COUNT(name) AS total_wines,
+            COUNT(wine_id) AS total_wines,
             AVG(rating) AS avg_rating
         FROM vinhos_por_climate
         GROUP BY climate
