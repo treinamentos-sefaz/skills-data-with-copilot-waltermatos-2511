@@ -57,3 +57,4 @@ def enrich_with_country(df: pd.DataFrame) -> pd.DataFrame:
     out = df.copy()
     out["country"] = out["region"].str.split(",").str[-1].str.strip()
     return out
+
